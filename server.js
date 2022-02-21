@@ -4,12 +4,21 @@ const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 require('dotenv').config();
 
+const connection = mysql.createConnection(
+  {
+    host: 'localhost', 
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+  }
+);
+
 // Start Application
 connection.connect(function(err){
     if (err) throw err;
     start();
   })
-  
+
 // Show all options 
 function start() {
     inquirer
@@ -57,9 +66,9 @@ function start() {
   function viewEmployees() {
     var employeeQuery = 'SELECT * FROM employee';
       connection.query(employeeQuery, function(err, res) {
-          if (err) throw err;
+          if(err)throw err;
           console.table('All Employees:', res); 
-          showOptions();
+          start();
       })
   }
   // viewDepartments
@@ -68,7 +77,7 @@ function start() {
       connection.query(departmentQuery, function(err, res) {
           if(err)throw err;
           console.table('All Departments:', res);
-          showOptions();
+          start();
     })
   }
 
@@ -76,9 +85,9 @@ function start() {
   function viewRoles() {
     var roleQuery = 'SELECT * FROM role';
       connection.query(roleQuery, function(err, res){
-          if (err) throw err;
+          if(err)throw err;
           console.table('All Roles:', res);
-          showOptions();
+          start();
       })
   }
 
@@ -118,7 +127,7 @@ function addEmployee() {
       connection.query(employeeQuery, function(err, res){
         if (err) throw err;
         console.table('All Employees:', res);
-        showOptions();
+        start();
       })
     })
 }
@@ -142,7 +151,7 @@ function addEmployee() {
           connection.query(departmentQuery, function(err, res){
             if (err) throw err;
             console.table('All Departments:', res);
-            showOptions();
+            start();
           })              
         })
   }
@@ -176,7 +185,7 @@ function addRole() {
           connection.query(roleQuery, function(err, res){
             if (err) throw err;
             console.table('All Roles:', res);
-            showOptions();
+            start();
           })
         })
   };
