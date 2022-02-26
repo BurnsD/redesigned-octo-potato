@@ -22,40 +22,67 @@ connection.connect(function(err){
 // Show all options 
 function start() {
     inquirer
-      .prompt({
-        name: 'list',
-        type: 'option',
+      .prompt([
+        {
+        name: 'options',
+        type: 'list',
         message: 'Select one of the following.',
         choices: [
-          'View all employees',
-          'View all departments',
-          'View all roles',
-          'Add an employee',
-          'Add a department',
-          'Add a role',
-          'Update employee role',
-          ]
-        }).then(function (answer) {
+          {
+            name: "View All Employees",
+            value: "VIEW_EMPLOYEES"
+          },
+          {
+            name: "View All Departments",
+            value: "VIEW_DEPARTMENTS"
+          },
+          {
+            name: "View All Roles",
+            value: "VIEW_ROLES"
+          },
+          {
+            name: "Add Employee",
+            value: "ADD_EMPLOYEE"
+          },
+          {
+            name: "Add Department",
+            value: "ADD_DEPARTMENT"
+          },
+          {
+            name: "Add Role",
+            value: "ADD_ROLE"
+          },
+          {
+            name: "Update Role",
+            value: "UPDATE_ROLE"
+          },
+          // {
+          //   name: "Quit",
+          //   value: "QUIT"
+          // }
+        ]
+      }
+    ]).then(function (answer) {
             switch (answer.action) {
-              case 'View all employees':
+              case 'VIEW_EMPLOYEES':
                   viewEmployees();
                   break;
-              case 'View all departments':
+              case 'VIEW_DEPARTMENTS':
                   viewDepartments();
                   break;
-              case 'View all roles':
+              case 'VIEW_ROLES':
                   viewRoles();
                   break;
-              case 'Add an employee':
+              case 'ADD_EMPLOYEE':
                   addEmployee();
                   break;
-              case 'Add a department':
+              case 'ADD_DEPARTMENT':
                   addDepartment();
                   break;
-              case 'Add a role':
+              case 'ADD_ROLE':
                   addRole();
                   break;
-              case 'Update employee role':
+              case 'UPDATE_ROLE':
                   updateRole();
                   break;
             }
@@ -193,3 +220,5 @@ function addRole() {
   function updateRole() {
 
 }
+
+start();
