@@ -1,23 +1,9 @@
 // Dependencies
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const db = require('./db')
 const consoleTable = require('console.table');
 require('dotenv').config();
-
-const connection = mysql.createConnection(
-  {
-    host: 'localhost', 
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-  }
-);
-
-// Start Application
-connection.connect(function(err){
-    if (err) throw err;
-    start();
-  })
 
 // Show all options 
 function start() {
@@ -89,15 +75,17 @@ function start() {
       });
   };
   
-  // viewEmployees
-  function viewEmployees() {
-    var employeeQuery = 'SELECT * FROM employee';
-      connection.query(employeeQuery, function(err, res) {
-          if(err)throw err;
-          console.table('All Employees:', res); 
-          start();
-      })
-  }
+ // View all employees
+function viewEmployees() {
+  db.findAllEmployees()
+    .then(([rows]) => {
+      let employees = rows;
+      console.log("\n");
+      console.table(employees);
+    })
+    .then(() => start());
+}
+
   // viewDepartments
   function viewDepartments() {
     var departmentQuery = 'SELECT * FROM department';
