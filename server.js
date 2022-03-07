@@ -14,11 +14,10 @@ const connection = mysql.createConnection(
 
   },
 );
-console.log("You have connected to the database for the Employee Tracker: " + process.env.DB_NAME)
+console.log("Connection to Employee Tracker success on: " + process.env.DB_NAME + "database")
 
 // Show all options 
 function start() {
-  console.log("app has started")
   inquirer.prompt(
     {
       type: 'list',
@@ -59,7 +58,6 @@ function start() {
         }
       ]
     }).then(answer => {
-      console.log("Looking for an answer");
       switch (answer.option) {
         case "VIEW_EMPLOYEES":
           connection.query('SELECT * FROM employee', function (err, results) {
