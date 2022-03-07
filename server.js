@@ -200,13 +200,15 @@ function addRole() {
           })
         })
   };
+  
+  
   // updateRole
 
 //   function updateRole() {
 
 // }
 function confirmCont() {
-  confirm("Would you like to continue?")
+  confirm("Continue?")
       .then(function confirmed() {
           askQuestions();
       }, function cancelled() {
