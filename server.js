@@ -45,7 +45,8 @@ function start() {
         ]
       }
     ]).then(function (answer) {
-            switch (answer.action) {
+      console.log('here is answer:', answer)
+            switch (answer.option) {
               case 'VIEW_EMPLOYEES':
                   viewEmployees();
                   break;
@@ -73,7 +74,7 @@ function start() {
   
  // View all employees
 function viewEmployees() {
-  db.findAllEmployees()
+  connection.findAllEmployees()
     .then(([rows]) => {
       let employees = rows;
       console.log("\n");
