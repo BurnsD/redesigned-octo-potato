@@ -13,6 +13,8 @@
  
   ## [Description](#table-of-contents)
   This project is meant to serve as a database of employees that can be manipulated through command line functions.
+  Follow this link for a Tutorial Video:
+  [Tutorial](https://drive.google.com/file/d/1xrFRGzUNfANrnHwLEX87Uak0bjrOWODp/view)
    
   ## [Installation](#table-of-contents)
   Use npm i to install all dependencies and npm start to start the application

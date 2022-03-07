@@ -49,10 +49,6 @@ function start() {
           value: "ADD_ROLE"
         },
         {
-          name: "Update Role",
-          value: "UPDATE_ROLE"
-        },
-        {
           name: "Update Employee",
           value: "UPDATE_EMPLOYEE"
         }
